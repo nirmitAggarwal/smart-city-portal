@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Garbage status</title>
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+   
+  </head>
+  <body>
+    <div id="graph"></div>
+
+
+    <script>
+    fetch('../resources/data.json')
+        .then(response => response.json())
+        .then(data => {
+          const trace = {
+            x: data.garbage.x,
+            y: data.garbage.y,
+            type: 'scatter'
+          };
+          const layout = {
+            title: 'Garbage per million Kilogram of last 12 months(numbered 1 to 12) '
+          };
+          const config = {
+            responsive: true
+          };
+          Plotly.newPlot('graph', [trace], layout, config);
+        });
+      </script>
+
+
+  </body>
+</html>
